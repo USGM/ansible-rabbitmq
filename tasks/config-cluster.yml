@@ -5,7 +5,7 @@
   lineinfile:
     dest: /etc/hosts
     line: "{{ hostvars[item]['internal_ip'] }} {{ hostvars[item]['ansible_hostname'] }}"
-  with_items: "{{ groups['rabbit'] }}" 
+  with_items: "{{ groups[rabbitmq_group] }}"
 
 - name: backup old erlang cookie
   shell: cp -a /var/lib/rabbitmq/.erlang.cookie /var/lib/rabbitmq/.erlang.cookie.old
